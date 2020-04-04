@@ -1,7 +1,7 @@
 {
   "name": "suspended_list",
   "version": "1.0.0",
-  "description": "a sorting algorithm where you can specify where some items in a list should be placed relative to other items.",
+  "description": "A data-structure that arranges items according to a sparse set of position-rules (e.g. \"a before b\" and \"z after y\")",
   "main": "suspendedList.js",
   "scripts": {
     "test": "jest"
