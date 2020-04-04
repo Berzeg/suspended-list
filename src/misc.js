@@ -11,7 +11,7 @@ export function identity(input) {
  * @param  {Optional<Integer>} right the right movement limit.
  * @return {Object} the left / right movements limits.
  */
-function createLeftRightMovementLimit(left = null, right = null) {
+export function createLeftRightMovementLimit(left = null, right = null) {
   return {left, right};
 }
 
@@ -34,7 +34,7 @@ function createLeftRightMovementLimit(left = null, right = null) {
  *     which breaks the rule "'a' before 'c'".
  *
  */
-function calculateLeftRightMovementLimits(list, rules) {
+export function calculateLeftRightMovementLimits(list, rules) {
   let limits = [];
 
   for (let i = 0; i < list.length; i++) {

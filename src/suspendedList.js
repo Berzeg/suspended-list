@@ -1,4 +1,6 @@
-import {identity} from 'misc';
+import {calculateLeftRightMovementLimits, identity} from './misc';
+import {ConflictingRulesError} from './errors';
+import PositionRules from './positionRules';
 
 export default class SuspendedList {
   constructor(serializer = identity) {
@@ -41,7 +43,7 @@ export default class SuspendedList {
   }
 
   addRuleXAfterY(x, y) {
-    addRuleXBeforeY(y, x);
+    this.addRuleXBeforeY(y, x);
   }
 
   removeRuleXBeforeY(x, y) {
@@ -52,8 +54,8 @@ export default class SuspendedList {
     this._rules.removeRule(y, x);
   }
 
-  removeAllRulesForItem(item) {
-    this._rules.removeAllRulesForItem(item);
+  removeRulesForItem(item) {
+    this._rules.removeRulesForItem(item);
   }
 
   // ========================================
@@ -109,12 +111,12 @@ export default class SuspendedList {
   remove(item) {
     let index = this._list.indexOf(item);
     if (index !== -1) {
-      this._list.splice(index + 1, 1);
+      this._list.splice(index, 1);
     }
   }
 
   removeAtIndex(index) {
-    this._list.splice(index + 1, 1);
+    this._list.splice(index, 1);
   }
 
   find(callback, thisArg = this._list) {
@@ -191,7 +193,7 @@ export default class SuspendedList {
     let xRightLimit = limits[xIndex].right;
     let distanceToY = yIndex - xIndex;
 
-    if (xRightLimit is null) {
+    if (xRightLimit === null) {
       return true;
     } else if (xRightLimit >= distanceToY) {
       return true;
@@ -224,7 +226,7 @@ export default class SuspendedList {
     // This is a while loop because the suspended list might have multiple
     // instances of x and y (e.g. ['a', y, 'b', y, x, 'c', x, 'd']) and we want
     // to apply the rule for all instances of x and y.
-    while (xIndex > yIndex)
+    while (xIndex > yIndex) {
       this._moveStackToRightOfTarget([yIndex], xIndex);
       xIndex = this._list.lastIndexOf(x);
       yIndex = this._list.indexOf(y);
@@ -263,7 +265,7 @@ export default class SuspendedList {
       stack.pop();
       let nextItem = this._list[nextItemIndex];
       this.removeAtIndex(nextItemIndex);
-      this.insert(nextItem, targetIndex + 1);
+      this.insert(nextItem, targetIndex);
       this._moveStackToRightOfTarget(stack, targetIndex - 1);
     } else {
       let rightLimitOfItem = limits[nextItemIndex].right;

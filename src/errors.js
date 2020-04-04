@@ -1,4 +1,4 @@
-function ConflictingRulesError(message) {
+export function ConflictingRulesError(message) {
   this.message = message;
   this.name = 'ConflictingRulesError';
 }

@@ -1,4 +1,4 @@
-import {identity} from 'misc';
+import {identity} from './misc';
 
 export default class PositionRules {
   constructor(serializer = identity) {
@@ -43,11 +43,11 @@ export default class PositionRules {
     let lhsString = this._serializer(lhs);
     let rhsString = this._serializer(rhs);
 
-    if (this._rulesLHS.hasOwnProperty(lhsString) {
+    if (this._rulesLHS.hasOwnProperty(lhsString)) {
       this._rulesLHS[lhsString].delete(rhsString)
     }
 
-    if (this._rulesRHS.hasOwnProperty(rhsString) {
+    if (this._rulesRHS.hasOwnProperty(rhsString)) {
       this._rulesRHS[rhsString].delete(lhsString)
     }
   }
@@ -55,14 +55,14 @@ export default class PositionRules {
   removeRulesForItem(item) {
     let itemString = this._serializer(item);
 
-    if (this._rulesLHS.hasOwnProperty(itemString) {
+    if (this._rulesLHS.hasOwnProperty(itemString)) {
       this._rulesLHS[itemString].forEach(rhsString => {
         this._rulesRHS[rhsString].delete(itemString)
       });
       delete this._rulesLHS[itemString];
     }
 
-    if (this._rulesRHS.hasOwnProperty(itemString) {
+    if (this._rulesRHS.hasOwnProperty(itemString)) {
       this._rulesRHS[itemString].forEach(lhsString => {
         this._rulesLHS[lhsString].delete(itemString)
       });
