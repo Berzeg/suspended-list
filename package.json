@@ -1,9 +1,11 @@
 {
-  "name": "suspended_list",
+  "name": "suspended-list",
   "version": "1.0.0",
   "description": "A data-structure that arranges items according to a sparse set of position-rules (e.g. \"a before b\" and \"z after y\")",
-  "main": "suspendedList.js",
+  "repository": "https://github.com/Berzeg/suspended-list",
+  "main": "index.js",
   "scripts": {
+    "build": "rollup src/suspendedList.js --file index.js --format cjs",
     "test": "jest"
   },
   "keywords": [
@@ -18,6 +20,8 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "babel-jest": "^25.2.4",
-    "jest": "^25.2.4"
+    "jest": "^25.2.4",
+    "rollup": "^2.3.3",
+    "rollup-plugin-babel": "^4.4.0"
   }
 }
