@@ -7,7 +7,7 @@ A data-structure that arranges items according to a sparse set of position-rules
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
 - [Motivation](#motivation)
-- [The `SuspendedList` Class](#the-suspended-list-class)
+- [The `SuspendedList` Class](#the-suspendedlist-class)
   - [constructor](#suspended-list-constructor)
   - [length](#suspended-list-length)
   - [item](#suspended-list-item)
@@ -78,7 +78,7 @@ console.log('list.toArray(): "' + list.toArray() + '"');
 
 A suspended-list is supposed to solve the scenario where there is no straight-forward, global order for a list of items, but there is an order that binds certain pairs of items in the list.
 
-For example, if you have a list if tasks that you want to complete by the end of the day you may list them as follows:
+For example, if you have a list of tasks that you want to complete by the end of the day you may list them as follows:
 
 ```
 [
@@ -107,13 +107,13 @@ The exact order in which you carry out the tasks may not be obvious at once, but
 ]
 ```
 
-The suspended list would be able to arrange the items in an order that respects all of the above rules, if none of the rules conflict each other. Some tasks may have no associated rules and may be placed wherever we want.
+The suspended list would be able to arrange the items in an order that respects all of the above rules, if none of the rules with conflict each other. Some tasks may have no associated rules and may be placed wherever we want.
 
 ## The `SuspendedList` Class
 
 #### <a id="suspended-list-constructor"></a> constructor(serializer = identity)
 
-  - `serializer` {Function} - A method that take a list itemas an input and outputs a unique string for each item. This defaults to an identity function (a function that returns the input as an output).
+  - `serializer` {Function} - A method that take a list items as an input and outputs a unique string for each item. This defaults to an identity function (a function that returns the input argument as an output).
 
 #### <a id="suspended-list-length"></a> length
 
@@ -171,20 +171,20 @@ The suspended list would be able to arrange the items in an order that respects 
 
   Pushes the provided item at the end of the list.
 
-  - item {Any} - The item to add to the list.
+  - `item` {Any} - The item to add to the list.
 
 #### <a id="suspended-list-unshift|pushLeft"></a> unshift|pushLeft(item)
 
   Pushes the provided item at the start of the list.
 
-  - item {Any} - The item to add to the list.
+  - `item` {Any} - The item to add to the list.
 
 #### <a id="suspended-list-insert"></a> insert(item, index)
 
   Inserts the provided item at the indicated list index.
 
-  - item {Any} - The item to add to the list.
-  - index {Integer} - The index in the list at which to add the item.
+  - `item` {Any} - The item to add to the list.
+  - `index` {Integer} - The index in the list at which to add the item.
 
 #### <a id="suspended-list-pop|popRight"></a> pop|popRight()
 
@@ -198,75 +198,75 @@ The suspended list would be able to arrange the items in an order that respects 
 
   Removes the first instance of the provided item that appears in the list.
 
-  - item {Any} - The item to remove from the list.
+  - `item` {Any} - The item to remove from the list.
 
 #### <a id="suspended-list-removeAtIndex"></a> removeAtIndex(index)
 
   Removes the item at the indicated list index.
 
-  - index {Integer} - The index of the item to be removed.
+  - `index` {Integer} - The index of the item to be removed.
 
 #### <a id="suspended-list-find"></a> find(callback, thisArg = this._list)
 
   Returns {Any} iterates over the list and returns the first item that satisfies the provided callback.
 
-  - callback {Function} - A function that takes a list item as an input and returns `true` if the item matches the item being sought after.
+  - `callback` {Function} - A function that takes a list item as an input and returns `true` if the item matches the item being sought after.
 
 #### <a id="suspended-list-findIndex"></a> findIndex(callback, thisArg = this._list)
 
   Returns {Integer} iterates over the list and returns the index of the first item that satisfies the provided callback.
 
-  - callback {Function} - A function that takes a list item as an input and returns `true` if the item matches the item being sought after.
+  - `callback` {Function} - A function that takes a list item as an input and returns `true` if the item matches the item being sought after.
 
 #### <a id="suspended-list-includes"></a> includes(valueToFind, fromIndex = undefined)
 
   Returns {Boolean} `true` if the item being sought after exists in the list.
 
-  - valueToFind {Any} - The item being sought after in the list.
-  - fromIndex {Integer} - The list index at which to start looking for the provided value.
+  - `valueToFind` {Any} - The item being sought after in the list.
+  - `fromIndex` {Integer} - The list index at which to start looking for the provided value.
 
 #### <a id="suspended-list-indexOf"></a> indexOf(searchElement, fromIndex = undefined)
 
   Returns {Integer} the index in the list of the first item that matches the provided search item.
 
-  - searchElement {Any} - The item whose index we're seeking.
-  - fromIndex {Integer} - The list index at which to start looking for the provided item.
+  - `searchElement` {Any} - The item whose index we're seeking.
+  - `fromIndex` {Integer} - The list index at which to start looking for the provided item.
 
 #### <a id="suspended-list-lastIndexOf"></a> lastIndexOf(searchElement, fromIndex = undefined)
 
   Returns {Integer} the index in the list of the last item that matches the provided search item.
 
-  - searchElement {Any} - The item whose index we're seeking.
-  - fromIndex {Integer} - The list index at which to start to start looking for the provided item (moving backwards from the indicated index).
+  - `searchElement` {Any} - The item whose index we're seeking.
+  - `fromIndex` {Integer} - The list index at which to start to start looking for the provided item (moving backwards from the indicated index).
 
 #### <a id="suspended-list-forEach"></a> forEach(callback, thisArg = this._list)
 
   iterates over each item in the list and calls the callback with each item as an input.
 
-  - callback {Function} - A function that takes a list item as an input.
+  - `callback` {Function} - A function that takes a list item as an input.
 
 #### <a id="suspended-list-map"></a> map(callback, thisArg = this._list)
 
   Returns {Array<Any>} iterates over each item in the list and calls the callback with each item as an input, and appends the output of the callback to a list that will eventually be returned to the caller.
 
-  - callback {Function} - A function that takes a list item as an input, and outputs any value.
+  - `callback` {Function} - A function that takes a list item as an input, and outputs any value.
 
 #### <a id="suspended-list-filter"></a> filter(callback, thisArg = this._list)
 
   Returns {Array<Any>} iterates over each item in the list and calls the callback with each item as an input, if the callback returns a truthy value then the list item is appended to a list that will eventually be returned to the caller.
 
-  - callback {Function} - A function that takes a list item as an input, and outputs a boolean value. `true` indicates that the list item is to be included in the output list. `false` indicates that the list item is not to be included in the output list.
+  - `callback` {Function} - A function that takes a list item as an input, and outputs a boolean value. `true` indicates that the list item is to be included in the output list. `false` indicates that the list item is not to be included in the output list.
 
 #### <a id="suspended-list-reduce"></a> reduce(callback, initialValue = undefined)
 
   Returns {Any} Reduces the list items into a single value by calling the provided "reducer" callback function.
 
-  - callback {Function} - A method that takes two inputs `(accumulator, currentValue)` and returns a combined (reduced) value.
-  - initialValue {Any} - The initial `accumulator` value. If not provided then the first list item is passed as the first `accumulator`.
+  - `callback` {Function} - A method that takes two inputs `(accumulator, currentValue)` and returns a combined (reduced) value.
+  - `initialValue` {Any} - The initial `accumulator` value. If not provided then the first list item is passed as the first `accumulator`.
 
 #### <a id="suspended-list-reduceRight"></a> reduceRight(callback, initialValue = undefined)
 
   Returns {Any} Reduces the list items into a single value by calling the provided "reducer" callback function. The reduction happens from the right hand side and moves leftwards.
 
-  - callback {Function} - A method that takes two inputs `(accumulator, currentValue)` and returns a combined (reduced) value.
-  - initialValue {Any} - The initial `accumulator` value. If not provided then the last list item is passed as the initial `accumulator`.
+  - `callback` {Function} - A method that takes two inputs `(accumulator, currentValue)` and returns a combined (reduced) value.
+  - `initialValue` {Any} - The initial `accumulator` value. If not provided then the last list item is passed as the initial `accumulator`.
